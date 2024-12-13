@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 
-const Feedback = ({ reviews }) => {
+const Feedback = ({ reviews, totalFeedback, positiveFeedback }) => {
     
 const reviewTypes = Object.entries(reviews);
      
@@ -17,7 +17,13 @@ const reviewTypes = Object.entries(reviews);
                     </React.Fragment>
                   )
               })
-          }
+      }
+      {!!totalFeedback && (
+        <>
+          <p className={css.fbAll}>Total: <span>{totalFeedback}</span></p>
+          <p className={css.fbAll}>Positive: <span>{positiveFeedback}%</span></p>
+        </>
+      )}
     </div>
   )
 }
@@ -25,7 +31,9 @@ const reviewTypes = Object.entries(reviews);
 
 
 Feedback.propTypes = {
-    reviews: PropTypes.object.isRequired,  
+  reviews: PropTypes.object.isRequired,
+  totalFeedback: PropTypes.number.isRequired,
+  positiveFeedback: PropTypes.number.isRequired,
 };
  
 
